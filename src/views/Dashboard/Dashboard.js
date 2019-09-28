@@ -38,7 +38,7 @@ import {
 } from "variables/charts.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-import { couldStartTrivia } from "typescript";
+
 
 const useStyles = makeStyles(styles);
 
@@ -163,7 +163,7 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
+              <h4 className={classes.cardTitle}>ABCD</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
@@ -263,7 +263,4 @@ export default function Dashboard() {
       </GridContainer>
     </div>
   );
-  function test(abc){
-    console.log('you typed : ' + abc);
-  }
 }
