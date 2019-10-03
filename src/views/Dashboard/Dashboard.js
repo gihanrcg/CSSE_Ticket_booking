@@ -53,18 +53,16 @@ export default function Dashboard() {
               <CardIcon color="warning">
                 <Icon>content_copy</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>No of Users</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                1.52 <small>K</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Danger>
-                  <Warning />
-                </Danger>
+                <DateRange />
                 <a href="#pablo" onClick={e => e.preventDefault()}>
-                  Get more space
+                  View user details
                 </a>
               </div>
             </CardFooter>

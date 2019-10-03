@@ -1,4 +1,3 @@
-
 import React from "react";
 import "../../assets/css/SignUpStyles.css";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen.js";
@@ -22,7 +21,7 @@ class SignUp extends React.Component {
             isLoading: true
         });
 
-        console.log(this.state)
+        console.log(this.state);
         axios({
             method: 'post',
             url: 'http://localhost:8081/api/v1/users/passenger',
@@ -30,17 +29,18 @@ class SignUp extends React.Component {
                 {
                     "username": this.state.username,
                     "password": this.state.password,
+                    "userFullName": this.state.fullname,
                     "email": this.state.email,
-                    "creditCardNo":'',
-                    "nic":this.state.nic,
-                    "contactNo":this.state.mobile,
-                    "userType":"ADMIN",
-                    "profileImg":''
+                    "creditCardNo": '',
+                    "nic": this.state.nic,
+                    "contactNo": this.state.mobile,
+                    "userType": "ADMIN",
+                    "profileImg": ''
                 }
 
         }).then(res => {
 
-            console.log(res)
+            console.log(res);
             localStorage.setItem('csse_we_32', res.data.token);
 
             // if(!res.data.confirm){
@@ -89,7 +89,7 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="div-back">
                 {this.state.isLoading && <LoadingScreen/>}
 
                 <div className="signup-form">
@@ -97,6 +97,7 @@ class SignUp extends React.Component {
                         <h2>Sign Up</h2>
                         <p>Please fill in this form to create an account!</p>
                         <hr/>
+
                         <div className="form-group">
                             <div className="input-group">
                 <span className="input-group-addon">
@@ -112,6 +113,24 @@ class SignUp extends React.Component {
                                 />
                             </div>
                         </div>
+
+                        <div className="form-group">
+                            <div className="input-group">
+                <span className="input-group-addon">
+                  <i className="fa fa-user"/>
+                </span>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="fullname"
+                                    placeholder="Full Name"
+                                    required="required"
+                                    onChange={this.onChangeHandler}
+                                />
+                            </div>
+                        </div>
+
+
                         <div className="form-group">
                             <div className="input-group">
                 <span className="input-group-addon">
@@ -202,7 +221,7 @@ class SignUp extends React.Component {
                         </div>
                     </form>
                     <div className="text-center">
-                        Already have an account? <a href="google.com">Login here</a>
+                        Already have an account? <a href="/login">Login here</a>
                     </div>
                 </div>
 
