@@ -15,6 +15,7 @@ import CardFooter from "components/Card/CardFooter.js";
 import axios from 'axios';
 import avatar from "assets/img/faces/marc.jpg";
 import HistoryTable from "../../components/HistoryTable/HistoryTable";
+import InputCreditCard from "../../components/CreditCard/InputCreditCard";
 
 const styles = {
   cardCategoryWhite: {
@@ -43,16 +44,27 @@ class UserProfile extends React.Component{
         super(props)
         this.state = {
             showUpdate : false,
-            user : null
+            user : null,
+            showRecharge : false
         }
 
     }
 
+
     componentDidMount() {
         this.getUser();
+
     }
     componentWillMount() {
         this.getUser();
+
+    }
+
+    onRechargeShow = () =>{
+        this.setState({
+            showRecharge : !this.state.showRecharge
+        })
+
     }
 
     showUpdateProfile = () => {
@@ -60,6 +72,24 @@ class UserProfile extends React.Component{
         this.setState({
             showUpdate : !this.state.showUpdate
         });
+    }
+
+    getSmartCard = () =>{
+        axios({
+            method: 'get',
+            url: 'http://localhost:8081/api/v1/smartCards/userId/'+this.state.user.id,
+
+        }).then(res => {
+
+            this.setState({
+                smartCard : res.data
+            });
+
+        }).catch(err => {
+            console.log(err)
+            alert(err)
+
+        })
     }
 
     getUser = () => {
@@ -82,7 +112,7 @@ class UserProfile extends React.Component{
             }
 
         }).then(res => {
-            console.log(res.data)
+
             this.setState({
                 user: res.data,
                 isLoggedIn: true
@@ -92,10 +122,16 @@ class UserProfile extends React.Component{
             console.log(err)
             window.location.replace('/login');
 
+        }).finally(a =>{
+            if(this.state.user.id){
+                this.onRefreshBalance();
+            }
         })
     }
 
-
+    onRefreshBalance = () => {
+        this.getSmartCard();
+    }
 
 
     render() {
@@ -251,6 +287,14 @@ class UserProfile extends React.Component{
                         <HistoryTable columns={historyTableColumns} data={historyTableData}/>
                     </CardBody>
                 </Card>
+                {this.state.showRecharge && (
+                    <Card>
+                        <CardBody>
+                            <InputCreditCard user={this.state.user} card={this.state.smartCard}/>
+                        </CardBody>
+                    </Card>
+                )}
+
 
             </GridItem>
             <GridItem xs={12} sm={12} md={4}>
@@ -261,27 +305,34 @@ class UserProfile extends React.Component{
                   </a>
                 </CardAvatar>
                 <CardBody profile>
-                  <h6 >CEO / CO-FOUNDER</h6>
+                  <h6 >PASSENGER</h6>
                   <h2 >{ this.state.user != null && this.state.user.userFullName}</h2>
 
                   <Button color="primary" round onClick={()=>{
                     this.showUpdateProfile();
                   }}>
-                    Update Profile
+                      {this.state.showUpdate ? 'Hide Profile update' : 'Update Profile'}
                   </Button>
                 </CardBody>
               </Card>
                 <Card profile>
                     <CardBody profile>
                         <h2 >Account Balance</h2>
-                        <h1 style={{color:"red",fontStyle:"strong"}} >Rs.256.00</h1>
+                        <h1 style={{color:"red",fontStyle:"strong"}} >Rs.{this.state.smartCard != null ? this.state.smartCard.amount : '0'}.00</h1>
                         <Button color="primary" round onClick={()=>{
-                            this.showUpdateProfile();
+                            this.onRefreshBalance();
                         }}>
-                            Recharge Account
+                            Refresh Balance
+                        </Button>
+                        <br/>
+                        <Button color="primary" round onClick={()=>{
+                            this.onRechargeShow();
+                        }}>
+                            {this.state.showRecharge ? 'Hide Recharge Tab' : 'Recharge Account'}
                         </Button>
                     </CardBody>
                 </Card>
+
             </GridItem>
           </GridContainer>
         </div>

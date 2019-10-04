@@ -4,7 +4,7 @@ import MaterialTable from 'material-table';
 class HistoryTable extends React.Component {
 
     constructor(props) {
-        console.log(props)
+
         super(props);
         // this.state = {
         //     columns: [
@@ -40,7 +40,7 @@ class HistoryTable extends React.Component {
             columns : this.props.columns,
             data : this.props.data
         })
-        console.log(this.props)
+
 
     }
 
