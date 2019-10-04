@@ -30,7 +30,7 @@ const dashboardRoutes = [
     icon: Person,
     component: UserProfile,
     layout: "/admin",
-    auth:"passenger"
+    auth:"PASSENGER"
   },
   {
     path: "/table",
@@ -66,7 +66,7 @@ const dashboardRoutes = [
     icon: LocationOn,
     component: Maps,
     layout: "/admin",
-    auth:"passenger"
+    auth:"ADMIN"
   },
   {
     path: "/notifications",
