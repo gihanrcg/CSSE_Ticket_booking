@@ -25,10 +25,11 @@ h1 {
 .grid td:hover {
     opacity: .7;
     cursor: pointer;
+    background: #4cae4c;
 }
 
 .reserved {
-    background: orange;
+    background: red;
     color: #fff;
     display: inline-block;
 }
