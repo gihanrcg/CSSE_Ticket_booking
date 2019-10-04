@@ -79,8 +79,6 @@ class InputCreditCard extends React.Component {
 
     handleSubmit = e => {
 
-        // e.preventDefault();
-        // this.onClickConfirmPay();
 
     };
 
@@ -118,7 +116,28 @@ class InputCreditCard extends React.Component {
     //     }
     // }
 
+    rechargeButtonClick = () => {
 
+        axios({
+            method: 'put',
+            url: 'http://localhost:8081/api/v1/smartCards/TopUp/'+this.props.card.id+'/'+this.state.cost,
+
+        }).then(res => {
+
+            this.props.updatebalance(res.data);
+
+        }).catch(err => {
+            console.log(err);
+
+
+        }).finally(a => {
+
+        })
+
+
+
+
+    }
 
     render() {
 
@@ -148,8 +167,8 @@ class InputCreditCard extends React.Component {
                                     name="cost"
                                     className="form-control"
                                     placeholder="Cost"
-                                    defaultValue={"Rs. "+this.state.cost}
-
+                                    defaultValue={this.state.cost}
+                                    onChange={this.handleInputChange}
                                 />
                             </div>
                             <div className="form-group">
@@ -206,7 +225,7 @@ class InputCreditCard extends React.Component {
 
                             <div className="form-actions">
                                 <Button color="primary" round onClick={()=>{
-                                    this.onRechargeShow();
+                                    this.rechargeButtonClick();
                                 }}>
                                     {this.state.showRecharge ? 'Hide Recharge Tab' : 'Recharge Account'}
                                 </Button>

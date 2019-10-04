@@ -29,7 +29,8 @@ const dashboardRoutes = [
     name: "User Profile",
     icon: Person,
     component: UserProfile,
-    layout: "/admin"
+    layout: "/admin",
+    auth:"passenger"
   },
   {
     path: "/table",
@@ -64,14 +65,16 @@ const dashboardRoutes = [
     name: "Route Maps",
     icon: LocationOn,
     component: Maps,
-    layout: "/admin"
+    layout: "/admin",
+    auth:"passenger"
   },
   {
     path: "/notifications",
     name: "Notifications",
     icon: Notifications,
     component: NotificationsPage,
-    layout: "/admin"
+    layout: "/admin",
+    auth : "admin"
   },
 
 

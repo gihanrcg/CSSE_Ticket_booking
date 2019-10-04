@@ -17,20 +17,46 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/buslogo.png";
+import {checkAuthUser} from "../variables/CheckAuth";
+import {PrivateRouteAdmin, PrivateRouteInspector, PrivateRoutePassenger} from "../variables/PrivateRoutes";
 
 let ps;
+
 
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
+      console.log(prop)
       if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
+
+        if(prop.auth === "PASSENGER"){
+         return ( <PrivateRoutePassenger
+             path={prop.layout + prop.path}
+             component={prop.component}
+             key={key}
+         />);
+        }else if(prop.auth === 'ADMIN'){
+          return ( <PrivateRouteAdmin
+              path={prop.layout + prop.path}
+              component={prop.component}
+              key={key}
+          />);
+        }
+        else if(prop.auth === 'INSPECTOR'){
+          return ( <PrivateRouteInspector
+              path={prop.layout + prop.path}
+              component={prop.component}
+              key={key}
+          />);
+        }else{
+          return (
+              <Route
+                  path={prop.layout + prop.path}
+                  component={prop.component}
+                  key={key}
+              />
+          );
+        }
       }
       return null;
     })}

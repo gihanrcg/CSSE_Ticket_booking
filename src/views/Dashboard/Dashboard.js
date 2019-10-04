@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState,useEffect  }  from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -17,33 +17,75 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
-import GridItem from "components/Grid/GridItem.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import Table from "components/Table/Table.js";
-import Tasks from "components/Tasks/Tasks.js";
-import CustomTabs from "components/CustomTabs/CustomTabs.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import Table from "../../components/Table/Table.js";
+import Tasks from "../../components/Tasks/Tasks.js";
+import CustomTabs from "../../components/CustomTabs/CustomTabs.js";
 import Danger from "components/Typography/Danger.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
+import Card from "../../components/Card/Card.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import CardIcon from "../../components/Card/CardIcon.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
 
-import { bugs, website, server } from "variables/general.js";
+import { bugs, website, server } from "../../variables/general.js";
 
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
-} from "variables/charts.js";
+} from "../../variables/charts.js";
 
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import axios from "axios";
 
 
 const useStyles = makeStyles(styles);
-
 export default function Dashboard() {
   const classes = useStyles();
+  const [count, setCount] = useState(100);
+
+  function formatDate(date) {
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [day, month, year].join('-');
+  }
+
+  useEffect(()=>{
+
+    let curr = new Date();
+    let firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+    let lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+
+    axios({
+      method: 'get',
+      url: 'http://localhost:8081/api/v1/Transaction/timeDuration/'+formatDate(firstday)+'/'+formatDate(lastday)
+
+    }).then(res => {
+      let tot = 0;
+      res.data.map(d => {
+        tot += d.amount;
+      });
+      setCount(tot)
+
+
+    }).catch(err => {
+      console.log(err);
+    }).finally(a => {
+
+    })
+  });
+
+
   return (
     <div>
       <GridContainer>
@@ -74,8 +116,8 @@ export default function Dashboard() {
               <CardIcon color="success">
                 <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+              <p className={classes.cardCategory}>Total Income in this week</p>
+              <h3 className={classes.cardTitle}>Rs.{count} .00</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>

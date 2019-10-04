@@ -11,19 +11,11 @@ import Login from "views/Login/Login.js"
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 import TableComponent from "./components/Table/TableComponent";
 import BookingDetails from "./components/Booking/BookingDetails";
+import App from "./App";
 
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-    <Router history={hist}>
-        <Switch>
-            <Route path="/admin" component={Admin}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/tables" component={TableComponent}/>
-            <Route path="/bookingDetails/:id" component={BookingDetails}/>
-            <Redirect from="/" to="/admin/dashboard"/>
-        </Switch>
-    </Router>,
+    <App/>,
     document.getElementById("root")
 );
