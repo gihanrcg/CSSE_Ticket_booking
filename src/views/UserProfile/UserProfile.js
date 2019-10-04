@@ -82,13 +82,14 @@ class UserProfile extends React.Component{
             }
 
         }).then(res => {
-            console.log(res)
+            console.log(res.data)
             this.setState({
                 user: res.data,
                 isLoggedIn: true
             });
 
         }).catch(err => {
+            console.log(err)
             window.location.replace('/login');
 
         })
@@ -138,13 +139,13 @@ class UserProfile extends React.Component{
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={5}>
                       <CustomInput
-                          labelText="Company (disabled)"
-                          id="company-disabled"
+                          labelText="Full Name"
+                          id="fullName"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
-                            disabled: true
+                              value : this.state.user.userFullName,
                           }}
                       />
                     </GridItem>
@@ -155,84 +156,90 @@ class UserProfile extends React.Component{
                           formControlProps={{
                             fullWidth: true
                           }}
+                          inputProps={{
+                              value : this.state.user.username,
+                          }}
                       />
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
                           labelText="Email address"
-                          id="email-address"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                  </GridContainer>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <CustomInput
-                          labelText="First Name"
-                          id="first-name"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <CustomInput
-                          labelText="Last Name"
-                          id="last-name"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                  </GridContainer>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                          labelText="City"
-                          id="city"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                          labelText="Country"
-                          id="country"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                          labelText="Postal Code"
-                          id="postal-code"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                      />
-                    </GridItem>
-                  </GridContainer>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={12}>
-                      <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
-                      <CustomInput
-                          labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                          id="about-me"
+                          id="email"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
-                            multiline: true,
-                            rows: 5
+                              value : this.state.user.email,
                           }}
-
                       />
                     </GridItem>
                   </GridContainer>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={5}>
+                            <CustomInput
+                                labelText="National ID Card Number"
+                                id="nic"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                                inputProps={{
+                                    value : this.state.user.nic,
+                                }}
+                            />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={3}>
+                            <CustomInput
+                                labelText="Contact Number"
+                                id="contact"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                                inputProps={{
+                                    value : this.state.user.contactNo,
+                                }}
+                            />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                            <CustomInput
+                                labelText="Type"
+                                id="type"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                                inputProps={{
+                                    value : 'Passenger',
+                                }}
+                            />
+                        </GridItem>
+                    </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                          labelText="Card Number"
+                          id="creditCardNo"
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                              value : this.state.user.creditCardNo,
+                          }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                          labelText="Expire Date"
+                          id="expire"
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                          inputProps={{
+                              value : this.state.user.expireDate,
+                          }}
+                      />
+                    </GridItem>
+
+                  </GridContainer>
+
                 </CardBody>
                 <CardFooter>
                   <Button color="primary">Update Profile</Button>

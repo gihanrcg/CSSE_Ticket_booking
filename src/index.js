@@ -10,6 +10,7 @@ import Login from "views/Login/Login.js"
 
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 import TableComponent from "./components/Table/TableComponent";
+import BookingDetails from "./components/Booking/BookingDetails";
 
 const hist = createBrowserHistory();
 
@@ -20,6 +21,7 @@ ReactDOM.render(
             <Route path="/signup" component={SignUp}/>
             <Route path="/login" component={Login}/>
             <Route path="/tables" component={TableComponent}/>
+            <Route path="/bookingDetails/:id" component={BookingDetails}/>
             <Redirect from="/" to="/admin/dashboard"/>
         </Switch>
     </Router>,

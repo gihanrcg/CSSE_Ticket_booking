@@ -2,6 +2,8 @@ import React from 'react';
 import MaterialTable from "material-table";
 import Select from 'react-select';
 import axios from "axios";
+import QRCodeGenerator from "../../components/QR/QRCodeGenerator";
+import QRCodeReader from "../../components/QR/QRCodeReader";
 
 class TimeTable extends React.Component {
 
@@ -25,7 +27,7 @@ class TimeTable extends React.Component {
     getTimeTable = () => {
 
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:8081/api/v1/timeSlots/getByFromAndDay/'+this.state.from+'/'+this.state.day,
 
 
@@ -58,7 +60,7 @@ class TimeTable extends React.Component {
 
 
     testClick = (val) => {
-        console.log(val)
+       window.location.replace('http://localhost:3000/bookingDetails/'+val)
     };
 
     render() {

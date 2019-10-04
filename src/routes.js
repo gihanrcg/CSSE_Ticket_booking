@@ -13,6 +13,7 @@ import Icons from "views/Icons/Icons.js";
 import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import TimeTable from "./views/Timetable/TimeTable";
+import BookingDetails from "./components/Booking/BookingDetails";
 
 
 const dashboardRoutes = [
@@ -71,7 +72,8 @@ const dashboardRoutes = [
     icon: Notifications,
     component: NotificationsPage,
     layout: "/admin"
-  }
+  },
+
 
 ];
 
