@@ -3,31 +3,7 @@ import MaterialTable from 'material-table';
 
 class HistoryTable extends React.Component {
 
-    constructor(props) {
 
-        super(props);
-        // this.state = {
-        //     columns: [
-        //         { title: 'Name', field: 'name' },
-        //         { title: 'Surname', field: 'surname' },
-        //         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        //         {
-        //             title: 'Birth Place',
-        //             field: 'birthCity'
-        //         },
-        //     ],
-        //     data: [
-        //         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        //         {
-        //             name: 'Zerya Betül',
-        //             surname: 'Baran',
-        //             birthYear: 2017,
-        //             birthCity: 34,
-        //         },
-        //     ],
-        //
-        // }
-    }
     componentWillMount() {
         this.setState({
             columns : this.props.columns,

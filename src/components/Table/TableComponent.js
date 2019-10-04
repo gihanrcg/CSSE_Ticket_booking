@@ -36,7 +36,7 @@ class TableComponent extends React.Component {
         else
             return (
                 <a
-                    href="#"
+                    href="google.com"
                     data-action-name={'linkCity'}
                     data-city-name={row.CITY}
                 >
@@ -57,7 +57,7 @@ class TableComponent extends React.Component {
         debugger;
         switch (dataAttrs.actionName) {
             case 'linkCity':
-                alert(dataAttrs.cityName)
+                alert(dataAttrs.cityName); break;
             default:
                 console.error(
                     new Error('No handler for table action: ' + dataAttrs.actionName));
@@ -66,13 +66,6 @@ class TableComponent extends React.Component {
     }
 
     buildTable(tableData) {
-        var tableColumns = [
-            { title: 'Name', prop: 'NAME', className: 'pushState' },
-            { title: 'City', prop: 'CITY', render: this.renderCity, className: 'dtClickAction' },
-            { title: 'Street address', prop: 'STREET ADDRESS' },
-            { title: 'Phone', prop: 'PHONE NUMBER', defaultContent: '<no phone>' },
-            { title: 'Map', render: this.renderMapUrl, className: 'text-center' }
-        ];
 
 
         return (

@@ -5,7 +5,8 @@ import SignUp from "./views/Login/SignUp";
 import Login from "./views/Login/Login";
 import TableComponent from "./components/Table/TableComponent";
 import BookingDetails from "./components/Booking/BookingDetails";
-import {PrivateRouteAdmin, PrivateRouteInspector, PrivateRoutePassenger} from "./variables/PrivateRoutes";
+// import {PrivateRouteAdmin, PrivateRouteInspector, PrivateRoutePassenger} from "./variables/PrivateRoutes";
+import {PrivateRoutePassenger} from "./variables/PrivateRoutes";
 
 class App extends React.Component {
 

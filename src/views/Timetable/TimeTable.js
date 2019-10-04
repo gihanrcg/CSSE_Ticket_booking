@@ -2,8 +2,6 @@ import React from 'react';
 import MaterialTable from "material-table";
 import Select from 'react-select';
 import axios from "axios";
-import QRCodeGenerator from "../../components/QR/QRCodeGenerator";
-import QRCodeReader from "../../components/QR/QRCodeReader";
 
 class TimeTable extends React.Component {
 
@@ -135,6 +133,9 @@ class TimeTable extends React.Component {
                         },
                         rowStyle: {
                             color: '#FFF',
+                            fontSize: '50px'
+                        },
+                        columnStyle:{
                             fontSize: '50px'
                         }
                     }}

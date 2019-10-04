@@ -1,7 +1,7 @@
 import React from "react";
 import "../../assets/css/SignUpStyles.css";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen.js";
-import axios from "axios";import image from "../../assets/img/lotus.jpg";
+import axios from "axios";
 
 
 class Login extends React.Component {

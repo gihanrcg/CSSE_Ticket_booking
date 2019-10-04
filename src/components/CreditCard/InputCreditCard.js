@@ -28,11 +28,6 @@ class InputCreditCard extends React.Component {
         cost : 1000
     };
 
-    constructor(props) {
-        super(props);
-
-
-    }
 
     componentDidMount() {
 
