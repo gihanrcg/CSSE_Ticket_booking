@@ -25,7 +25,7 @@ let ps;
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
-      console.log(prop)
+
       if (prop.layout === "/admin") {
 
         if(prop.auth === "PASSENGER"){

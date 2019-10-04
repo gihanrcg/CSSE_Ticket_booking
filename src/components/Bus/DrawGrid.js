@@ -37,22 +37,20 @@ class DrawGrid extends React.Component {
 
         return (
 
-            <div >
-
-                <div >
+                <div className="table-responsive" >
 
                     <table className="grid">
-                        <tbody style={{width:'150%'}}>
+                        <tbody >
                         {this.state.tdObjects.map((raw) =>
                             <tr key={raw}>
-                                <td style={{width:'20%'}} className={this.props.reserved.indexOf(raw[0]) > -1 ? 'reserved' : 'available'}
+                                <td  className={this.props.reserved.indexOf(raw[0]) > -1 ? 'reserved' : 'available'}
                                     key={raw[0]} onClick={e => this.onClickSeat(raw[0])}>{raw[0]}</td>
-                                <td style={{width:'20%'}} className={this.props.reserved.indexOf(raw[1]) > -1 ? 'reserved' : 'available'}
+                                <td  className={this.props.reserved.indexOf(raw[1]) > -1 ? 'reserved' : 'available'}
                                     key={raw[1]} onClick={e => this.onClickSeat(raw[1])}>{raw[1]}</td>
-                                <td style={{width:'20%',border:'none'}} key={raw[3] + 1000} />
-                                <td style={{width:'20%'}} className={this.props.reserved.indexOf(raw[2]) > -1 ? 'reserved' : 'available'}
+                                <td style={{border:'none'}} key={raw[3] + 1000} />
+                                <td  className={this.props.reserved.indexOf(raw[2]) > -1 ? 'reserved' : 'available'}
                                     key={raw[2]} onClick={e => this.onClickSeat(raw[2])}>{raw[2]}</td>
-                                <td style={{width:'20%'}} className={this.props.reserved.indexOf(raw[3]) > -1 ? 'reserved' : 'available'}
+                                <td  className={this.props.reserved.indexOf(raw[3]) > -1 ? 'reserved' : 'available'}
                                     key={raw[3]} onClick={e => this.onClickSeat(raw[3])}>{raw[3]}</td>
                             </tr>)
                         }
@@ -63,7 +61,7 @@ class DrawGrid extends React.Component {
                     <AvailableList available={this.props.available}/>
                     <ReservedList reserved={this.props.reserved}/>
                 </div>
-            </div>
+
         )
     }
 
