@@ -13,6 +13,7 @@ import Icons from "views/Icons/Icons.js";
 import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import TimeTable from "./views/Timetable/TimeTable";
+import Test from "./views/Test/Test";
 
 
 const dashboardRoutes = [
@@ -75,6 +76,14 @@ const dashboardRoutes = [
     layout: "/admin",
     auth : "admin"
   },
+  {
+    path: "/test",
+    name: "Test",
+    icon: Notifications,
+    component: Test,
+    layout: "/admin",
+    auth : "admin"
+  }
 
 
 ];
