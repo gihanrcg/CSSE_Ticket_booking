@@ -19,7 +19,7 @@ class App extends React.Component {
                     <PrivateRoutePassenger path="/signup" component={SignUp}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/tables" component={TableComponent}/>
-                    <Route path="/bookingDetails/:id" component={BookingDetails}/>
+                    <Route path="/bookingDetails/:id/:date" component={BookingDetails}/>
                     <Redirect from="/" to="/admin/dashboard"/>
 
                     {/*<PrivateRouteAdmin path="/admin" component={Admin}/>*/}

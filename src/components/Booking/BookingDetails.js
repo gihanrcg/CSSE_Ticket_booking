@@ -35,6 +35,7 @@ class BookingDetails extends React.Component {
     componentDidMount() {
 
         let id = this.props.match.params.id;
+        let date = this.props.match.params.date;
         axios({
             method: 'get',
             url: 'http://localhost:8081/api/v1/timeSlots/getById/'+id,
@@ -57,6 +58,14 @@ class BookingDetails extends React.Component {
         }).catch(err => {
             console.log('error'.err);
         });
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8081/api/v1/travels/get/'+id+'/'+date,
+
+        }).then(res=>{
+            console.log(res);
+        })
     }
 
     render() {

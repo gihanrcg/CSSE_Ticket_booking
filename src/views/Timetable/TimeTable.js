@@ -28,7 +28,7 @@ class TimeTable extends React.Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8081/api/v1/timeSlots/getByFromAndDay/' + this.state.from + '/' + this.state.day,
+            url: 'http://localhost:8081/api/v1/timeSlots/getByFromAndDate/' + this.state.from + '/' + this.state.date,
 
 
         }).then(res => {
@@ -65,8 +65,8 @@ class TimeTable extends React.Component {
         this.getTimeTable()
     }
 
-    testClick = (val) => {
-        window.location.replace('http://localhost:3000/bookingDetails/' + val)
+    testClick = (id,date) => {
+        window.location.replace('http://localhost:3000/bookingDetails/' + id+'/'+date)
     };
 
     render() {
@@ -82,7 +82,7 @@ class TimeTable extends React.Component {
             {
                 title: 'Buttons',
                 field: 'btn',
-                render: rowData => <input type="button" value={'Book Now'} onClick={() => this.testClick(rowData.id)}/>
+                render: rowData => <input type="button" value={'Book Now'} onClick={() => this.testClick(rowData.id,this.state.date)}/>
             }
         ];
         let historyTableData = [
