@@ -1,25 +1,58 @@
-import React from 'react';
+import React,{ PropTypes } from 'react';
 import "./BusStyles.css";
+import axios from "axios";
 
 
 class SeatList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            tdObjects: [{seatNo:1,smartCardId:'001'},{seatNo:2,smartCardId:''},{seatNo:3,smartCardId:'ass'},{seatNo:4,smartCardId:'ass'},{seatNo:5,smartCardId:''},{seatNo:6,smartCardId:''},{seatNo:7,smartCardId:''},{seatNo:8,smartCardId:''},{seatNo:9,smartCardId:''}]
-        }
+   // state={tdObjects:this.props.seatList};
+    
+   constructor(props) {
+       
+    super(props);
+    this.state = {
+        tdObjects:props.seats
+
+    };
+}
+componentWillReceiveProps(nextProps){
+    this.setState({tdObjects:this.props.seats});
+
+}
+
+    componentDidMount() {
+        console.log('propprop',this.props.seats);
+        this.setState({tdObjects:this.props.seats});
+        //console.log('seatListSeats',this);
     }
 
-    componentWillMount() {
-        
-
+    componentWillMount(){
+      // this.setState({tdObjects:this.props.seatList});
     }
 
     getSmartCardId(){
         return '001';
     }
 
+    bookNow(){
+        let userBookedSeats=this.state.tdObjects.filter(
+            (seat)=>seat.smartCardId=='001'
+            );
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:8081/api/v1/seats/bookNow',
+            data:{
+                date:new Date(),
+                seats:userBookedSeats
+            }
+
+        }).then(res=>{
+           
+            this.setState({seats:res.data});
+            console.log('seatsssnn',this.state.seats);
+        })
+    }
     onClickSeat(seatNo,smartCardId){
         console.log('seatNo',seatNo);
         let oldSeats=this.state.tdObjects;
@@ -31,7 +64,7 @@ class SeatList extends React.Component {
         }else{
             id='';
         }
-        console.log(oldSeats);
+        console.log(this.state.tdObjects);
         oldSeats[seatNo-1].smartCardId=id;
         console.log(oldSeats[seatNo-1]);
 
@@ -57,23 +90,34 @@ class SeatList extends React.Component {
 
 
     render() {
-
+           // this.setState({tdObjects:this.props.seatList});
+            console.log('sealistzzz',this.props.seats)
 
         return (
                 <div style={{width:'290px'}}>
+                    <h1></h1>
+                    <div>
                     {this.state.tdObjects.map((seat)=>{
                         if(seat.smartCardId=="001")
-                        return (<div style={{backgroundColor:'green',width:'50px',height:'50px',margin:'10px',float:'left'}} onClick={()=>this.onClickSeat(seat.seatNo,seat.smartCardId)}>
+                        return (<div style={{backgroundColor:'green',width:'50px',height:'50px',margin:'10px',float:'left',textAlign:'center'}} onClick={()=>this.onClickSeat(seat.seatNo,seat.smartCardId)}>
+                        {seat.seatNo}
                         </div>)
                         
                         if(seat.smartCardId!="")
-                        return (<div style={{backgroundColor:'red',width:'50px',height:'50px',margin:'10px',float:'left'}}>
+                        return (<div style={{backgroundColor:'red',width:'50px',height:'50px',margin:'10px',float:'left',textAlign:'center'}}>
+                        {seat.seatNo}
                         </div>)
                         
                         if(seat.smartCardId=="")
-                        return (<div style={{backgroundColor:'black',width:'50px',height:'50px',margin:'10px',float:'left'}} onClick={()=>this.onClickSeat(seat.seatNo,seat.smartCardId)}>
+                        return (<div style={{backgroundColor:'black',width:'50px',height:'50px',margin:'10px',float:'left',textAlign:'center'}} onClick={()=>this.onClickSeat(seat.seatNo,seat.smartCardId)}>
+                        {seat.seatNo}
                         </div>)
                     })}
+                    </div>
+                    <div style={{float:'none'}}>
+                        <br/>
+                    <button onClick={()=>this.bookNow()}>book Now</button>
+                    </div>
                 </div>
                 
 
