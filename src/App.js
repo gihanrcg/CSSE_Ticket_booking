@@ -7,6 +7,7 @@ import TableComponent from "./components/Table/TableComponent";
 import BookingDetails from "./components/Booking/BookingDetails";
 // import {PrivateRouteAdmin, PrivateRouteInspector, PrivateRoutePassenger} from "./variables/PrivateRoutes";
 import {PrivateRoutePassenger} from "./variables/PrivateRoutes";
+import SeatList from "../src/components/Bus/SeatList";
 
 class App extends React.Component {
 
@@ -19,6 +20,7 @@ class App extends React.Component {
                     <PrivateRoutePassenger path="/signup" component={SignUp}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/tables" component={TableComponent}/>
+                    <Route path="/seatList" component={SeatList}/>
                     <Route path="/bookingDetails/:id" component={BookingDetails}/>
                     <Redirect from="/" to="/admin/dashboard"/>
 
