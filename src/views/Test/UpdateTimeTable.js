@@ -82,11 +82,7 @@ class UpdateTimeTable extends React.Component {
         }).catch(err => {
             alert('Invalid username or password')
         }).finally(x => {
-            // this.setState({
-            //     isLoading: false,
-            //     email: '',
-            //     password: ''
-            // })
+
             window.location.replace('/user')
 
         });

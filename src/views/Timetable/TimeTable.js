@@ -12,7 +12,11 @@ class TimeTable extends React.Component {
             day: 'Sunday',
             from: 'homagama',
             travelObj: null,
-            date: new Date()
+            date: new Date(),
+            busStand:'',
+            zone:'',
+            inspectorId:'',
+            CheckList:[]
         }
     }
 
@@ -95,14 +99,6 @@ class TimeTable extends React.Component {
             {label: "maharagama", value: 2},
         ];
 
-        const datesOfWeek = [
-            {label: "Sunday", value: "Sunday"},
-            {label: "Monday", value: "Monday"},
-            {label: "Tuesday", value: "Tuesday"},
-            {label: "Wednesday", value: "Wednesday"},
-            {label: "Friday", value: "Friday"},
-            {label: "Saturday", value: "Saturday"},
-        ];
         const selectStyles = {
             width: '50%',
 
@@ -113,8 +109,7 @@ class TimeTable extends React.Component {
                 <table style={{width: '50%', zIndex: '100'}} cellPadding="50px">
                     <tbody>
                     <tr>
-                        <td style={{width: '40%'}}><Select onChange={this.onFromChange} options={scaryAnimals}
-                                                           styles={selectStyles} placeholder={"Select From location"}/>
+                        <td style={{width: '40%'}}><Select onChange={this.onFromChange} options={scaryAnimals} styles={selectStyles} placeholder={"Select From location"}/>
                         </td>
                         <td style={{width: '10%'}}/>
                         <td style={{width: '40%'}}>

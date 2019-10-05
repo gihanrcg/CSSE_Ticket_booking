@@ -5,7 +5,16 @@ class Inspector extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            username:'',
+            password:'',
+            fullname:'',
+            email:'',
+            nic:'',
+            contactNo:'',
+            userType:'',
+            profileImg:'',
+        }
 
     }
 
@@ -19,7 +28,7 @@ class Inspector extends Component {
         console.log(this.state);
         axios({
             method: 'post',
-            url: 'http://localhost:8081/api/v1/users/passenger',
+            url: 'http://localhost:8081/api/v1/users/inspector',
             data:
                 {
                     "username": this.state.username,
@@ -28,8 +37,8 @@ class Inspector extends Component {
                     "email": this.state.email,
                     "creditCardNo": '',
                     "nic": this.state.nic,
-                    "contactNo": this.state.mobile,
-                    "userType": "ADMIN",
+                    "contactNo": this.state.contactNo,
+                    "userType": "INSPECTOR",
                     "profileImg": ''
                 }
 
@@ -37,6 +46,7 @@ class Inspector extends Component {
 
             console.log(res);
             localStorage.setItem('csse_we_32', res.data.token);
+            window.location.replace("/admin/addInspector");
 
         }).catch(err => {
             console.log('error'.err);
@@ -65,7 +75,7 @@ class Inspector extends Component {
             <div>
                 <div className="addInspector-form">
                     <form onSubmit={this.onSubmitHandler}>
-                        <h2>Add Data</h2>
+                        <h2>Add New Inspector</h2>
                         <hr/>
 
                         <div className="form-group">
@@ -124,7 +134,7 @@ class Inspector extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    name="mobile"
+                                    name="contactNo"
                                     placeholder="Mobile Number"
                                     required="required"
                                     onChange={this.onChangeHandler}
@@ -178,15 +188,8 @@ class Inspector extends Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <label className="checkbox-inline">
-                                <input type="checkbox" required="required"/> I accept the{" "}
-                                <a href="google.com">Terms of Use</a> &amp;{" "}
-                                <a href="google.com">Privacy Policy</a>
-                            </label>
-                        </div>
-                        <div className="form-group">
                             <button type="submit" className="btn btn-primary btn-lg">
-                                Sign Up
+                                Add
                             </button>
                         </div>
                     </form>
