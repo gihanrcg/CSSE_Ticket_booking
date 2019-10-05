@@ -13,7 +13,7 @@ import Icons from "views/Icons/Icons.js";
 import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import TimeTable from "./views/Timetable/TimeTable";
-import Test from "./views/Test/Test";
+import UpdateTimeTable from "./views/Test/UpdateTimeTable";
 
 
 const dashboardRoutes = [
@@ -66,7 +66,7 @@ const dashboardRoutes = [
     icon: LocationOn,
     component: Maps,
     layout: "/admin",
-    auth:"ADMIN"
+    auth:"admin"
   },
   {
     path: "/notifications",
@@ -77,10 +77,10 @@ const dashboardRoutes = [
     auth : "admin"
   },
   {
-    path: "/test",
-    name: "Test",
+    path: "/updateTimeTable",
+    name: "Update Time Table",
     icon: Notifications,
-    component: Test,
+    component: UpdateTimeTable,
     layout: "/admin",
     auth : "admin"
   }
