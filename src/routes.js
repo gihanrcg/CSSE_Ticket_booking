@@ -14,6 +14,7 @@ import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import TimeTable from "./views/Timetable/TimeTable";
 import UpdateTimeTable from "./views/Test/UpdateTimeTable";
+import Inspector from "./components/Inspector/Inspector";
 
 
 const dashboardRoutes = [
@@ -83,7 +84,16 @@ const dashboardRoutes = [
     component: UpdateTimeTable,
     layout: "/admin",
     auth : "admin"
+  },
+  {
+    path: "/addInspector",
+    name: "Add inspector",
+    icon: Notifications,
+    component: Inspector,
+    layout: "/admin",
+    auth : "admin"
   }
+
 
 
 ];
