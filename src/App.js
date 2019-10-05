@@ -21,7 +21,8 @@ class App extends React.Component {
                     <Route path="/login" component={Login}/>
                     <Route path="/tables" component={TableComponent}/>
                     <Route path="/seatList" component={SeatList}/>
-                    <Route path="/bookingDetails/:id" component={BookingDetails}/>
+              
+                    <Route path="/bookingDetails/:id/:date" component={BookingDetails}/>
                     <Redirect from="/" to="/admin/dashboard"/>
 
                     {/*<PrivateRouteAdmin path="/admin" component={Admin}/>*/}

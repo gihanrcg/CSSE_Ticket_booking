@@ -2,6 +2,7 @@ import React from 'react';
 import MaterialTable from "material-table";
 import Select from 'react-select';
 import axios from "axios";
+import DatePicker from 'react-date-picker';
 
 class TimeTable extends React.Component {
 
@@ -10,7 +11,8 @@ class TimeTable extends React.Component {
         this.state = {
             day: 'Sunday',
             from: 'homagama',
-            travelObj:null
+            travelObj: null,
+            date: new Date()
         }
     }
 
@@ -26,12 +28,12 @@ class TimeTable extends React.Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8081/api/v1/timeSlots/getByFromAndDay/'+this.state.from+'/'+this.state.day,
+            url: 'http://localhost:8081/api/v1/timeSlots/getByFromAndDate/' + this.state.from + '/' + this.state.date,
 
 
         }).then(res => {
             this.setState({
-                travelObj : res.data
+                travelObj: res.data
             })
             console.log(res);
 
@@ -43,7 +45,7 @@ class TimeTable extends React.Component {
 
     onFromChange = (selectedValue) => {
         this.setState({
-            from: selectedValue.label
+            from: selectedValue.label,
         });
 
         this.getTimeTable();
@@ -57,8 +59,14 @@ class TimeTable extends React.Component {
     };
 
 
-    testClick = (val) => {
-       window.location.replace('http://localhost:3000/bookingDetails/'+val)
+    onChangeDatePicker = date => {
+        this.setState({date})
+        console.log(date)
+        this.getTimeTable()
+    }
+
+    testClick = (id,date) => {
+        window.location.replace('http://localhost:3000/bookingDetails/' + id+'/'+date)
     };
 
     render() {
@@ -74,7 +82,7 @@ class TimeTable extends React.Component {
             {
                 title: 'Buttons',
                 field: 'btn',
-                render: rowData => <input type="button" value={'Book Now'} onClick={() => this.testClick(rowData.id)}/>
+                render: rowData => <input type="button" value={'Book Now'} onClick={() => this.testClick(rowData.id,this.state.date)}/>
             }
         ];
         let historyTableData = [
@@ -85,10 +93,6 @@ class TimeTable extends React.Component {
         const scaryAnimals = [
             {label: "homagama", value: 1},
             {label: "maharagama", value: 2},
-            {label: "Sharks", value: 3},
-            {label: "Small crocodiles", value: 4},
-            {label: "Smallest crocodiles", value: 5},
-            {label: "Snakes", value: 6},
         ];
 
         const datesOfWeek = [
@@ -113,12 +117,14 @@ class TimeTable extends React.Component {
                                                            styles={selectStyles} placeholder={"Select From location"}/>
                         </td>
                         <td style={{width: '10%'}}/>
-                        <td style={{width: '40%'}}><Select onChange={this.onDayChange} options={datesOfWeek}
-                                                           styles={selectStyles} placeholder={"Select Date"}/></td>
+                        <td style={{width: '40%'}}>
+                            <DatePicker
+                                onChange={this.onChangeDatePicker}
+                                value={this.state.date}
+                            /></td>
                     </tr>
                     </tbody>
                 </table>
-
                 <br/>
                 <MaterialTable
                     title="Travel Time table"
@@ -135,7 +141,7 @@ class TimeTable extends React.Component {
                             color: '#FFF',
                             fontSize: '50px'
                         },
-                        columnStyle:{
+                        columnStyle: {
                             fontSize: '50px'
                         }
                     }}
