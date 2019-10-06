@@ -17,7 +17,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route path="/admin" component={Admin}/>
-                    <PrivateRoutePassenger path="/signup" component={SignUp}/>
+                    <Route path="/signup" component={SignUp}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/tables" component={TableComponent}/>
                     <Route path="/seatList" component={SeatList}/>

@@ -23,7 +23,7 @@ class HistoryTable extends React.Component {
     render() {
     return(
         <MaterialTable
-            title="Editable Example"
+            title="Travel History"
             columns={this.state.columns}
             data={this.state.data}
             // editable={{

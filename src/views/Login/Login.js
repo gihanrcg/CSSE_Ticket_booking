@@ -42,7 +42,7 @@ class Login extends React.Component {
             window.location.replace(
             "/");
         }).catch(err => {
-            alert('Invalid username or password')
+            console.log(err)
         }).finally(x => {
             this.setState({
                 isLoading: false,

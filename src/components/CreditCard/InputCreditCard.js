@@ -31,10 +31,11 @@ class InputCreditCard extends React.Component {
 
     componentDidMount() {
 
+        console.log(this.props.user)
         this.setState({
             number : this.props.user.creditCardNo,
             name : this.props.user.userFullName,
-            expiry : this.props.user.expireDate
+            expiry : this.props.user.expireDate ? this.props.user.expireDate : ''
         })
 
     }
@@ -113,6 +114,7 @@ class InputCreditCard extends React.Component {
 
     rechargeButtonClick = () => {
 
+        console.log(this.props)
         axios({
             method: 'put',
             url: 'http://localhost:8081/api/v1/smartCards/TopUp/'+this.props.card.id+'/'+this.state.cost,
@@ -137,6 +139,7 @@ class InputCreditCard extends React.Component {
     render() {
 
         const {name, number, expiry, cvc, focused} = this.state;
+
         return (
             <div key="Payment">
 
